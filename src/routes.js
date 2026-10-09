@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
+import CategoryController from './app/controllers/CategoryController.js';
 import ProductController from './app/controllers/ProductController.js';
 import SessionController from './app/controllers/SessionController.js';
 import UserController from './app/controllers/UserController.js';
@@ -37,6 +38,9 @@ routes.post('/products', upload.single('file'), ProductController.store);
 
 // Rota para listar os produtos   // Middleware para autenticação
 routes.get('/products', ProductController.index);
+
+routes.post('/categories', CategoryController.store);
+routes.get('/categories', CategoryController.index);
 
 
 
