@@ -38,6 +38,9 @@ routes.use(authMiddleware);
 // rota para criar produtos : http://localhost:3001/products
 routes.post('/products', adminMiddleware, upload.single('file'), ProductController.store);
 
+
+routes.put('/products/:id', adminMiddleware, upload.single('file'), ProductController.update);
+
 // Rota para listar os produtos   // Middleware para autenticação
 routes.get('/products', ProductController.index);
 
