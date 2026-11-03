@@ -71,6 +71,7 @@ class CategoryController {
         };
 
 
+
         await Category.update({
             name,
             path,
