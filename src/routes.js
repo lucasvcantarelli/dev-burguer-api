@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 import CategoryController from './app/controllers/CategoryController.js';
+import OrderController from './app/controllers/OrderController.js';
 import ProductController from './app/controllers/ProductController.js';
 import SessionController from './app/controllers/SessionController.js';
 import UserController from './app/controllers/UserController.js';
@@ -48,6 +49,8 @@ routes.post('/categories', adminMiddleware, upload.single('file'), CategoryContr
 routes.put('/categories/:id', adminMiddleware, upload.single('file'), CategoryController.update,);
 routes.get('/categories', CategoryController.index);
 
+
+routes.post('/orders', adminMiddleware, OrderController.store);
 
 
 
