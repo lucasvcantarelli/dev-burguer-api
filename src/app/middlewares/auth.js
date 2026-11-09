@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import authConfig from '../config/auth.js';
+import authConfig from '../../config/auth.js';
 
 // Middleware para verificar se o token está presente na requisição
 const authMiddleware = (request, response, next) => {

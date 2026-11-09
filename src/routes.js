@@ -5,9 +5,9 @@ import OrderController from './app/controllers/OrderController.js';
 import ProductController from './app/controllers/ProductController.js';
 import SessionController from './app/controllers/SessionController.js';
 import UserController from './app/controllers/UserController.js';
+import adminMiddleware from './app/middlewares/admin.js';
+import authMiddleware from './app/middlewares/auth.js';
 import multerConfig from './config/multer.cjs';
-import adminMiddleware from './middlewares/admin.js';
-import authMiddleware from './middlewares/auth.js';
 
 
 const routes = new Router();
@@ -30,7 +30,7 @@ DELETE -> DELETAR
 routes.post('/users', UserController.store);
 
 // Contexto de rota: http://localhost:3001/session
-routes.post('/session', SessionController.store);
+routes.post('/sessions', SessionController.store);
 
 
 
@@ -39,17 +39,19 @@ routes.use(authMiddleware);
 // rota para criar produtos : http://localhost:3001/products
 routes.post('/products', adminMiddleware, upload.single('file'), ProductController.store);
 
-
+// Rota para atualizar produtos : http://localhost:3001/products/:id
 routes.put('/products/:id', adminMiddleware, upload.single('file'), ProductController.update);
 
 // Rota para listar os produtos   // Middleware para autenticação
 routes.get('/products', ProductController.index);
 
+// Rotas de categorias
 routes.post('/categories', adminMiddleware, upload.single('file'), CategoryController.store);
 routes.put('/categories/:id', adminMiddleware, upload.single('file'), CategoryController.update,);
 routes.get('/categories', CategoryController.index);
 
 
+// Rotas de pedidos
 routes.post('/orders', OrderController.store);
 routes.get('/orders', OrderController.index);
 routes.put('/orders/:id', adminMiddleware, OrderController.update);
