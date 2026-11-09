@@ -50,7 +50,9 @@ routes.put('/categories/:id', adminMiddleware, upload.single('file'), CategoryCo
 routes.get('/categories', CategoryController.index);
 
 
-routes.post('/orders', adminMiddleware, OrderController.store);
+routes.post('/orders', OrderController.store);
+routes.get('/orders', OrderController.index);
+routes.put('/orders/:id', adminMiddleware, OrderController.update);
 
 
 
